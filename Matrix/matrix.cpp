@@ -30,11 +30,22 @@ Matrix::Matrix(unsigned rows, unsigned columns, double initial) {
     }
 }
 
+
 // #####################
 // # Access Operations #
 // #####################
 double& Matrix::operator[](const unsigned &row, const unsigned &column) {
     return this->m_Matrix[column][row];
+}
+
+double& Matrix::operator[](const unsigned &index) {
+    if (m_RowNumber == 1 && m_ColumnNumber > index) {
+        return m_Matrix[index][0];
+    } else if (m_ColumnNumber == 1 && m_RowNumber > index) {
+        return m_Matrix[0][index];
+    } else {
+        throw std::invalid_argument("Matrix must be unidimentional to access this method");
+    }
 }
 
 

@@ -14,6 +14,7 @@ public:
 
     // Access Operations
     double& operator[](const unsigned &, const unsigned &);
+    double& operator[](const unsigned &);
 
     // Print Matrix
     void Print() const;
