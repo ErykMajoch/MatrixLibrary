@@ -12,6 +12,9 @@ public:
     Matrix(unsigned rows, unsigned columns);
     Matrix(unsigned rows, unsigned columns, double initial);
 
+    // Access Operations
+    double& operator[](const unsigned &, const unsigned &);
+
     // Print Matrix
     void Print() const;
 
