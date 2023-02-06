@@ -30,6 +30,15 @@ Matrix::Matrix(unsigned rows, unsigned columns, double initial) {
     }
 }
 
+// #####################
+// # Access Operations #
+// #####################
+double& Matrix::operator[](const unsigned &row, const unsigned &column) {
+    return this->m_Matrix[column][row];
+}
+
+
+
 // #############
 // # Utilities #
 // ############# 
