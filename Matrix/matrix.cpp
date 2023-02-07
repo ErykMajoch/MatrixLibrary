@@ -20,7 +20,7 @@ Matrix::Matrix(unsigned rows, unsigned columns) {
 }
 
 // Matrix::Matrix constructor with size parameters
-// Initialised all fields to an initial value
+// Initialised all fields with an initial value
 Matrix::Matrix(unsigned rows, unsigned columns, double initial) {
     m_RowNumber = rows;
     m_ColumnNumber = columns;
