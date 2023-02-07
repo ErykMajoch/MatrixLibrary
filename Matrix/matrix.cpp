@@ -35,6 +35,9 @@ Matrix::Matrix(unsigned rows, unsigned columns, double initial) {
 // # Access Operations #
 // #####################
 double& Matrix::operator[](const unsigned &row, const unsigned &column) {
+    if (row > m_RowNumber || column > m_ColumnNumber) {
+        throw std::invalid_argument("Arguments out of range");
+    }
     return this->m_Matrix[column][row];
 }
 
@@ -180,6 +183,17 @@ Matrix& Matrix::operator/=(double scalar) {
     return *this;
 }
 
+// ###########
+// # Getters #
+// ###########
+
+unsigned Matrix::GetColumns() {
+    return m_ColumnNumber;
+}
+
+unsigned Matrix::GetRows() {
+    return m_RowNumber;
+}
 
 // #############
 // # Utilities #

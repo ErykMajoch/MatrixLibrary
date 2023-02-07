@@ -28,6 +28,10 @@ public:
     Matrix& operator*=(double);
     Matrix& operator/=(double);
 
+    // Getters
+    unsigned GetRows();
+    unsigned GetColumns();
+
     // Print Matrix
     void Print() const;
 
