@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>
 #include <stdexcept>
 
 class Matrix
@@ -15,6 +16,17 @@ public:
     // Access Operations
     double& operator[](const unsigned &, const unsigned &);
     double& operator[](const unsigned &);
+
+    // Scalar Operations
+    Matrix operator+(double);
+    Matrix operator-(double);
+    Matrix operator*(double);
+    Matrix operator/(double);
+
+    Matrix& operator+=(double);
+    Matrix& operator-=(double);
+    Matrix& operator*=(double);
+    Matrix& operator/=(double);
 
     // Print Matrix
     void Print() const;

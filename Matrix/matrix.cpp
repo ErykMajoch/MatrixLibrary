@@ -48,6 +48,137 @@ double& Matrix::operator[](const unsigned &index) {
     }
 }
 
+// #####################
+// # Scalar Operations #
+// #####################
+
+// Normal Operations
+Matrix Matrix::operator+(double scalar) {
+    if (m_RowNumber == 0 || m_ColumnNumber == 0) {
+        throw std::invalid_argument("The matrix is empty");
+    }
+
+    Matrix result = Matrix(m_RowNumber, m_ColumnNumber, 0.0);
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            result[j, i] = m_Matrix[i][j] + scalar;
+        }
+    }
+
+    return result;
+}
+
+Matrix Matrix::operator-(double scalar) {
+    if (m_RowNumber == 0 || m_ColumnNumber == 0) {
+        throw std::invalid_argument("The matrix is empty");
+    }
+
+    Matrix result = Matrix(m_RowNumber, m_ColumnNumber, 0.0);
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            result[j,i] = this->m_Matrix[i][j] - scalar;
+        }
+    }
+
+    return result;
+}
+
+Matrix Matrix::operator*(double scalar) {
+    if (m_RowNumber == 0 || m_ColumnNumber == 0) {
+        throw std::invalid_argument("The matrix is empty");
+    }
+
+    Matrix result = Matrix(m_RowNumber, m_ColumnNumber, 0.0);
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            result[j,i] = this->m_Matrix[i][j] * scalar;
+        }
+    }
+
+    return result;
+}
+
+Matrix Matrix::operator/(double scalar) {
+    if (m_RowNumber == 0 || m_ColumnNumber == 0) {
+        throw std::invalid_argument("The matrix is empty");
+    }
+
+    if (scalar == 0) {
+        throw std::invalid_argument("Cannot divide matrix by 0");
+    }
+
+    Matrix result = Matrix(m_RowNumber, m_ColumnNumber, 0.0);
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            result[j,i] = this->m_Matrix[i][j] / scalar;
+        }
+    }
+
+    return result;
+}
+
+// Inline Operations
+Matrix& Matrix::operator+=(double scalar) {
+
+    if (m_RowNumber == 0 || m_ColumnNumber == 0) {
+        throw std::invalid_argument("The matrix is empty");
+    }
+
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            this->m_Matrix[i][j] = this->m_Matrix[i][j] + scalar;
+        }
+    }
+
+
+    return *this;
+}
+
+Matrix& Matrix::operator-=(double scalar) {
+    if (m_RowNumber == 0 || m_ColumnNumber == 0) {
+        throw std::invalid_argument("The matrix is empty");
+    }
+
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            this->m_Matrix[i][j] = this->m_Matrix[i][j] - scalar;
+        }
+    }
+
+    return *this;
+}
+
+Matrix& Matrix::operator*=(double scalar) {
+    if (m_RowNumber == 0 || m_ColumnNumber == 0) {
+        throw std::invalid_argument("The matrix is empty");
+    }
+
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            this->m_Matrix[i][j] = this->m_Matrix[i][j] * scalar;
+        }
+    }
+
+    return *this;
+}
+
+Matrix& Matrix::operator/=(double scalar) {
+    if (m_RowNumber == 0 || m_ColumnNumber == 0) {
+        throw std::invalid_argument("The matrix is empty");
+    }
+
+    if (scalar == 0) {
+        throw std::invalid_argument("Cannot divide matrix by 0");
+    }
+
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            this->m_Matrix[i][j] = this->m_Matrix[i][j] / scalar;
+        }
+    }
+
+    return *this;
+}
 
 
 // #############
