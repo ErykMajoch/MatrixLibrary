@@ -17,6 +17,17 @@ public:
     double& operator[](const unsigned &, const unsigned &);
     double& operator[](const unsigned &);
 
+    // Matrix Operations
+    Matrix operator+(Matrix &);
+    Matrix operator-(Matrix &);
+    Matrix operator*(Matrix &);
+    Matrix operator/(Matrix &);
+
+    Matrix& operator+=(Matrix &);
+    Matrix& operator-=(Matrix &);
+    Matrix& operator*=(Matrix &);
+    Matrix& operator/=(Matrix &);
+
     // Scalar Operations
     Matrix operator+(double);
     Matrix operator-(double);

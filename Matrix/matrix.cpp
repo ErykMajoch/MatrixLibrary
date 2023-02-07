@@ -52,6 +52,46 @@ double& Matrix::operator[](const unsigned &index) {
 }
 
 // #####################
+// # Matrix Operations #
+// #####################
+
+// Normal Opeartions
+Matrix Matrix::operator+(Matrix &Other) {
+    Matrix result = Matrix(m_RowNumber, m_ColumnNumber, 0.0);
+
+    if (m_RowNumber == Other.GetRows() && m_ColumnNumber == Other.GetColumns()) {
+        for (unsigned i = 0; i < m_ColumnNumber; i++) {
+            for (unsigned j = 0; j < m_RowNumber; j++) {
+                result[j,i] = this->m_Matrix[i][j] + Other[j,i];
+            }
+        }
+    } else {
+        throw std::invalid_argument("The matrices must be the same size");
+    }
+
+    return result;
+
+}
+
+Matrix Matrix::operator-(Matrix &Other) {
+    Matrix result = Matrix(m_RowNumber, m_ColumnNumber, 0.0);
+
+    if (m_RowNumber == Other.GetRows() && m_ColumnNumber == Other.GetColumns()) {
+        for (unsigned i = 0; i < m_ColumnNumber; i++) {
+            for (unsigned j = 0; j < m_RowNumber; j++) {
+                result[j,i] = this->m_Matrix[i][j] - Other[j,i];
+            }
+        }
+    } else {
+        throw std::invalid_argument("The matrices must be the same size");
+    }
+
+    return result;
+
+}
+
+
+// #####################
 // # Scalar Operations #
 // #####################
 

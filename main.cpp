@@ -2,14 +2,17 @@
 
 int main() {
 
-    Matrix m = Matrix(2, 5);
-    m.Print();
+    Matrix m1 = Matrix(2, 5, 2.1);
+    Matrix m2 = Matrix(2, 5, 2.9);
 
+    std::cout << "Matrix One:\n";
+    m1.Print();
+    std::cout << "\nMatrix Two:\n";
+    m2.Print();
 
-    std::cout << "\nMatrix stats:\n";
-    std::cout << " - Rows: " << m.GetRows() << "\n - Columns: " << m.GetColumns() << "\n";
-
-    std::cout << m[1,1] << "\n";
+    Matrix m3 = m1 - m2;
+    std::cout << "\nResult of matrices:\n";
+    m3.Print();
 
     // std::cout << "Original Matrix\n";
     // Matrix m = Matrix(3, 3, 4.32);
