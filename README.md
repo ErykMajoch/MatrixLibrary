@@ -4,14 +4,14 @@
 ### Scalar Operations
 | Addition | Subtraction | Multiplication | Division |
 |:--------:|:-----------:|:--------------:|:--------:|
-|   `+` <span style="color:#00FF00">✔️</span>  |    `-` <span style="color:#00FF00">✔️</span>    |      `*` <span style="color:#00FF00">✔️</span>     |   `/` <span style="color:#00FF00">✔️</span>  |
-|  `+=` <span style="color:#00FF00">✔️</span>  |    `-=` <span style="color:#00FF00">✔️</span>   |     `*=` <span style="color:#00FF00">✔️</span>     |  `/=` <span style="color:#00FF00">✔️</span>  |
+|   `+` :heavy_check_mark:  |    `-` :heavy_check_mark:    |      `*` :heavy_check_mark:     |   `/` :heavy_check_mark:  |
+|  `+=` :heavy_check_mark:  |    `-=` :heavy_check_mark:   |     `*=` :heavy_check_mark:     |  `/=` :heavy_check_mark:  |
 
 ### Matrix Operations
 | Addition | Subtraction | Multiplication | Division |
 |:--------:|:-----------:|:--------------:|:--------:|
-|   `+` ⚠️  |    `-` ⚠️    |      `*` <span style="color:#00FF00"><span style="color:#00FF00">✔️</span></span>     |   `/` ❌  |
-|  `+=` ❌  |    `-=` ❌   |     `*=` ❌     |  `/=` ❌  |
+|   `+` :construction:  |    `-` :construction:    |      `*` <span style="color:#00FF00">:heavy_check_mark:</span>     |   `/` :x:  |
+|  `+=` :x:  |    `-=` :x:   |     `*=` :x:     |  `/=` :x:  |
 
 ## Building the project
 These instructions assume that you're using C++ version 23 as well as CMake version >=3.1
