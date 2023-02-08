@@ -12,21 +12,22 @@ public:
     Matrix();
     Matrix(unsigned rows, unsigned columns);
     Matrix(unsigned rows, unsigned columns, double initial);
-
+    Matrix(std::vector<std::vector<double>> Other);
+    
     // Access Operations
     double& operator[](const unsigned &, const unsigned &);
     double& operator[](const unsigned &);
 
     // Matrix Operations
-    Matrix operator+(Matrix &);
-    Matrix operator-(Matrix &);
+    Matrix operator+(Matrix &); // <= Implement all features
+    Matrix operator-(Matrix &); // <= Implement all features
     Matrix operator*(Matrix &);
-    Matrix operator/(Matrix &);
+    // TODO => Matrix operator/(Matrix &);
 
-    Matrix& operator+=(Matrix &);
-    Matrix& operator-=(Matrix &);
-    Matrix& operator*=(Matrix &);
-    Matrix& operator/=(Matrix &);
+    // TODO => Matrix& operator+=(Matrix &);
+    // TODO => Matrix& operator-=(Matrix &);
+    // TODO => Matrix& operator*=(Matrix &);
+    // TODO => Matrix& operator/=(Matrix &);
 
     // Scalar Operations
     Matrix operator+(double);

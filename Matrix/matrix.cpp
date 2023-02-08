@@ -30,6 +30,18 @@ Matrix::Matrix(unsigned rows, unsigned columns, double initial) {
     }
 }
 
+// Matrix::Matrix constructor from a 2D vector
+Matrix::Matrix(std::vector<std::vector<double>> Other) {
+    m_RowNumber = Other[0].size();
+    m_ColumnNumber = Other.size();
+    m_Matrix.resize(m_ColumnNumber);
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        m_Matrix[i].resize(m_RowNumber);
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            m_Matrix[i][j] = Other[i][j];
+        }
+    }
+}
 
 // #####################
 // # Access Operations #
@@ -87,6 +99,27 @@ Matrix Matrix::operator-(Matrix &Other) {
     }
 
     return result;
+
+}
+
+Matrix Matrix::operator*(Matrix &Other) {
+
+    if (m_ColumnNumber == Other.GetRows()) {
+
+        Matrix result = Matrix(Other.GetRows(), m_ColumnNumber);
+
+        for (unsigned i = 0; i < m_ColumnNumber; i++) {
+            for (unsigned j = 0; j < Other.GetRows(); j++) {
+                double product = 0.0;
+                for (unsigned k = 0; k < m_RowNumber; k++) {
+                    result[j,i] += m_Matrix[i][k] * Other[j,k];
+                }
+            }
+        }
+        return result;
+    } else {
+        throw std::invalid_argument("The number of columns of A must be the same as the number of rows of B");
+    }
 
 }
 
