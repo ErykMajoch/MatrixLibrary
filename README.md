@@ -1,6 +1,24 @@
 # A C++ 23 Matrix Library
 
-## Project Roadmap
+
+<!--  
+
+Transposition Submatrix
+
+Square Matrices:
+ - Diagonal Matrix
+ - Lower Triangular Matrix
+ - Upper Triangular Matrix
+
+Inverse Matrices
+ - Identity Matrix
+ - Determinant
+
+
+-->
+
+
+## Roadmap
 ### Scalar Operations
 | Addition | Subtraction | Multiplication | Division |
 |:--------:|:-----------:|:--------------:|:--------:|
@@ -10,8 +28,20 @@
 ### Matrix Operations
 | Addition | Subtraction | Multiplication | Division |
 |:--------:|:-----------:|:--------------:|:--------:|
-|   `+` :construction:  |    `-` :construction:    |      `*` <span style="color:#00FF00">:heavy_check_mark:</span>     |   `/` :x:  |
+|`+` :construction:|`-` :construction:|`*` <span style="color:#00FF00">:heavy_check_mark:</span>|`/` :x:|
 |  `+=` :x:  |    `-=` :x:   |     `*=` :x:     |  `/=` :x:  |
+
+### Inverse Operations
+| Identity Matrix | Determinant | Cofactor Matrix | Adjucate Matrix |
+|:---------------:|:-----------:|:---------------:|:---------------:|
+|       :x:       |     :x:     |       :x:       |       :x:       |
+<!-- https://byjus.com/maths/adjoint-of-a-matrix/ -->
+
+### Additional Utilities
+|        Print       |
+|:------------------:|
+| :heavy_check_mark: |
+
 
 ## Building the project
 These instructions assume that you're using C++ version 23 as well as CMake version >=3.1
