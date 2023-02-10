@@ -317,3 +317,17 @@ IdentityMatrix::IdentityMatrix(unsigned size) {
     }
 
 }
+
+IdentityMatrix::IdentityMatrix(Matrix &A) {
+    m_RowNumber = A.GetRows();
+    m_ColumnNumber = A.GetColumns();
+    m_Matrix.resize(m_ColumnNumber);
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        m_Matrix[i].resize(m_RowNumber, 0.0);
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            if (i == j) {
+                m_Matrix[i][j] = 1.0;
+            }
+        }
+    }
+}

@@ -63,5 +63,6 @@ protected:
 class IdentityMatrix : public Matrix {
 public:
     IdentityMatrix();
-    IdentityMatrix(unsigned size);    
+    IdentityMatrix(unsigned size);
+    IdentityMatrix(Matrix &A);
 };
