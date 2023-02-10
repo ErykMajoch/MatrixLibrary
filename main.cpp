@@ -3,16 +3,13 @@
 int main() {
 
     Matrix A = std::vector<std::vector<double>>({{1,2},{4,5}});
-    Matrix B = std::vector<std::vector<double>>({{7,8},{9,1}});
+    Matrix I = A.GetIdentityMatrix();
 
-    std::cout << "Matrix One:\n";
+    std::cout << "Matrix A\n";
     A.Print();
-    std::cout << "\nMatrix Two:\n";
-    B.Print();
 
-    Matrix result = A * B;
-    std::cout << "\nResult of matrices:\n";
-    result.Print();
+    std::cout << "\nIdentity Matrix of A\n";
+    I.Print();
 
     return 0;
 }

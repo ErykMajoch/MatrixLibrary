@@ -5,6 +5,8 @@
 #include <cmath>
 #include <stdexcept>
 
+class IdentityMatrix;
+
 class Matrix
 {
 public:
@@ -43,12 +45,23 @@ public:
     // Getters
     unsigned GetRows();
     unsigned GetColumns();
+    IdentityMatrix GetIdentityMatrix();
 
     // Print Matrix
     void Print() const;
 
-private:
+protected:
     unsigned m_ColumnNumber = 0;
     unsigned m_RowNumber = 0;
     std::vector<std::vector<double>> m_Matrix = {};
+};
+
+// ###################
+// # Identity Matrix #
+// ###################
+
+class IdentityMatrix : public Matrix {
+public:
+    IdentityMatrix();
+    IdentityMatrix(unsigned size);    
 };

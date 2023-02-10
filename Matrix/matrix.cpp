@@ -110,7 +110,6 @@ Matrix Matrix::operator*(Matrix &Other) {
 
         for (unsigned i = 0; i < m_ColumnNumber; i++) {
             for (unsigned j = 0; j < Other.GetRows(); j++) {
-                double product = 0.0;
                 for (unsigned k = 0; k < m_RowNumber; k++) {
                     result[j,i] += m_Matrix[i][k] * Other[j,k];
                 }
@@ -268,6 +267,14 @@ unsigned Matrix::GetRows() {
     return m_RowNumber;
 }
 
+IdentityMatrix Matrix::GetIdentityMatrix() {
+    if (m_RowNumber != m_ColumnNumber || m_RowNumber <=0) {
+        throw std::invalid_argument("Cannot create identity matrix");
+    }
+    IdentityMatrix I = IdentityMatrix(m_RowNumber);
+    return I;
+}
+
 // #############
 // # Utilities #
 // ############# 
@@ -287,4 +294,26 @@ void Matrix::Print() const {
         }
         std::cout << "|\n";
     }
+}
+
+// ###################
+// # Identity Matrix #
+// ###################
+
+IdentityMatrix::IdentityMatrix() = default;
+
+IdentityMatrix::IdentityMatrix(unsigned size) {
+    if (size <= 0) {
+        throw std::invalid_argument("Matrix size cannot be 0 or less");
+    }
+
+
+    m_RowNumber = size;
+    m_ColumnNumber = size;
+    m_Matrix.resize(size);
+    for (unsigned i = 0; i < size; i++) {
+        m_Matrix[i].resize(size, 0.0);
+        m_Matrix[i][i] = 1.0;
+    }
+
 }
