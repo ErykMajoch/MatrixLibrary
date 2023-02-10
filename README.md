@@ -34,7 +34,7 @@ Inverse Matrices
 ### Inverse Operations
 | Identity Matrix | Determinant | Cofactor Matrix | Adjucate Matrix |
 |:---------------:|:-----------:|:---------------:|:---------------:|
-|       :x:       |     :x:     |       :x:       |       :x:       |
+|       :heavy_check_mark:       |     :x:     |       :x:       |       :x:       |
 <!-- https://byjus.com/maths/adjoint-of-a-matrix/ -->
 
 ### Additional Utilities
