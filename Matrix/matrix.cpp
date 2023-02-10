@@ -2,7 +2,7 @@
 
 // ################
 // # Constructors #
-// ################ 
+// ################
 
 
 // Default Matrix::Matrix constructor
@@ -63,6 +63,39 @@ double& Matrix::operator[](const unsigned &index) {
     }
 }
 
+// ###################
+// # Equals Operator #
+// ###################
+bool Matrix::operator==(Matrix &Other) {
+    if (m_RowNumber != Other.GetRows() || m_ColumnNumber != Other.GetColumns()) {
+        return false;
+    }
+
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            if (m_Matrix[i][j] != Other[j,i]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool Matrix::operator==(std::vector<std::vector<double>> &Other) {
+    if (m_RowNumber != Other[0].size() || m_ColumnNumber != Other.size()) {
+        return false;
+    }
+
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            if (m_Matrix[i][j] != Other[i][j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 // #####################
 // # Matrix Operations #
 // #####################
@@ -74,7 +107,7 @@ Matrix Matrix::operator+(Matrix &Other) {
     if (m_RowNumber == Other.GetRows() && m_ColumnNumber == Other.GetColumns()) {
         for (unsigned i = 0; i < m_ColumnNumber; i++) {
             for (unsigned j = 0; j < m_RowNumber; j++) {
-                result[j,i] = this->m_Matrix[i][j] + Other[j,i];
+                result[j, i] = this->m_Matrix[i][j] + Other[j, i];
             }
         }
     } else {
@@ -82,7 +115,6 @@ Matrix Matrix::operator+(Matrix &Other) {
     }
 
     return result;
-
 }
 
 Matrix Matrix::operator-(Matrix &Other) {
@@ -91,7 +123,7 @@ Matrix Matrix::operator-(Matrix &Other) {
     if (m_RowNumber == Other.GetRows() && m_ColumnNumber == Other.GetColumns()) {
         for (unsigned i = 0; i < m_ColumnNumber; i++) {
             for (unsigned j = 0; j < m_RowNumber; j++) {
-                result[j,i] = this->m_Matrix[i][j] - Other[j,i];
+                result[j, i] = this->m_Matrix[i][j] - Other[j, i];
             }
         }
     } else {
@@ -99,19 +131,15 @@ Matrix Matrix::operator-(Matrix &Other) {
     }
 
     return result;
-
 }
 
 Matrix Matrix::operator*(Matrix &Other) {
-
     if (m_ColumnNumber == Other.GetRows()) {
-
         Matrix result = Matrix(Other.GetRows(), m_ColumnNumber);
-
         for (unsigned i = 0; i < m_ColumnNumber; i++) {
             for (unsigned j = 0; j < Other.GetRows(); j++) {
                 for (unsigned k = 0; k < m_RowNumber; k++) {
-                    result[j,i] += m_Matrix[i][k] * Other[j,k];
+                    result[j, i] += m_Matrix[i][k] * Other[j, k];
                 }
             }
         }
@@ -119,9 +147,7 @@ Matrix Matrix::operator*(Matrix &Other) {
     } else {
         throw std::invalid_argument("The number of columns of A must be the same as the number of rows of B");
     }
-
 }
-
 
 // #####################
 // # Scalar Operations #
@@ -139,7 +165,6 @@ Matrix Matrix::operator+(double scalar) {
             result[j, i] = m_Matrix[i][j] + scalar;
         }
     }
-
     return result;
 }
 
@@ -151,10 +176,9 @@ Matrix Matrix::operator-(double scalar) {
     Matrix result = Matrix(m_RowNumber, m_ColumnNumber, 0.0);
     for (unsigned i = 0; i < m_ColumnNumber; i++) {
         for (unsigned j = 0; j < m_RowNumber; j++) {
-            result[j,i] = this->m_Matrix[i][j] - scalar;
+            result[j, i] = this->m_Matrix[i][j] - scalar;
         }
     }
-
     return result;
 }
 
@@ -166,7 +190,7 @@ Matrix Matrix::operator*(double scalar) {
     Matrix result = Matrix(m_RowNumber, m_ColumnNumber, 0.0);
     for (unsigned i = 0; i < m_ColumnNumber; i++) {
         for (unsigned j = 0; j < m_RowNumber; j++) {
-            result[j,i] = this->m_Matrix[i][j] * scalar;
+            result[j, i] = this->m_Matrix[i][j] * scalar;
         }
     }
 
@@ -185,7 +209,7 @@ Matrix Matrix::operator/(double scalar) {
     Matrix result = Matrix(m_RowNumber, m_ColumnNumber, 0.0);
     for (unsigned i = 0; i < m_ColumnNumber; i++) {
         for (unsigned j = 0; j < m_RowNumber; j++) {
-            result[j,i] = this->m_Matrix[i][j] / scalar;
+            result[j, i] = this->m_Matrix[i][j] / scalar;
         }
     }
 
@@ -194,7 +218,6 @@ Matrix Matrix::operator/(double scalar) {
 
 // Inline Operations
 Matrix& Matrix::operator+=(double scalar) {
-
     if (m_RowNumber == 0 || m_ColumnNumber == 0) {
         throw std::invalid_argument("The matrix is empty");
     }
@@ -204,7 +227,6 @@ Matrix& Matrix::operator+=(double scalar) {
             this->m_Matrix[i][j] = this->m_Matrix[i][j] + scalar;
         }
     }
-
 
     return *this;
 }
@@ -277,22 +299,32 @@ IdentityMatrix Matrix::GetIdentityMatrix() {
 
 // #############
 // # Utilities #
-// ############# 
+// #############
 
-// Prints the fomrated matrix 
-void Matrix::Print() const {
+size_t Matrix::NumberOfDigits(double n) {
+	std::ostringstream current;
+	current << n;
+	return current.str().size();
+}
 
-    // If matrix is empty, throw an error
-    if (m_RowNumber == 0 || m_ColumnNumber == 0) {
-        throw std::out_of_range("The matrix is empty!");
-    }
+void Matrix::Print() {
+    size_t max_len_per_column[100];
+	for (size_t j = 0; j < m_RowNumber; ++j) {
+		size_t max_len {};
 
-    for (std::vector<double> v : m_Matrix) {
-        std::cout << "| ";
-        for (double d : v) {
-            std::cout << d << " ";
+		for (size_t i = 0; i < m_ColumnNumber; ++i) {
+			if (const auto num_length {NumberOfDigits(m_Matrix[i][j])}; num_length > max_len) {
+                max_len = num_length;
+            }
         }
-        std::cout << "|\n";
+
+		max_len_per_column[j] = max_len;
+	}
+
+	for (size_t i = 0; i < m_ColumnNumber ; ++i) {
+		for (size_t j = 0; j < m_RowNumber; ++j) {
+			std::cout << (j == 0 ? "| " : "") << std::setw(max_len_per_column[j]) << m_Matrix[i][j] << (j == m_RowNumber - 1 ? " |\n" : " ");
+        }
     }
 }
 
@@ -307,7 +339,6 @@ IdentityMatrix::IdentityMatrix(unsigned size) {
         throw std::invalid_argument("Matrix size cannot be 0 or less");
     }
 
-
     m_RowNumber = size;
     m_ColumnNumber = size;
     m_Matrix.resize(size);
@@ -315,7 +346,6 @@ IdentityMatrix::IdentityMatrix(unsigned size) {
         m_Matrix[i].resize(size, 0.0);
         m_Matrix[i][i] = 1.0;
     }
-
 }
 
 IdentityMatrix::IdentityMatrix(Matrix &A) {
