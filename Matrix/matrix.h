@@ -53,6 +53,9 @@ class Matrix {
     unsigned GetColumns();
     IdentityMatrix GetIdentityMatrix();
 
+    // Functions
+    Matrix Transpose() const;
+
     // Print Matrix
     void Print();
 

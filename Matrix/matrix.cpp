@@ -144,7 +144,15 @@ Matrix Matrix::operator*(Matrix &Other) {
             }
         }
         return result;
-    } else {
+    }
+
+    // Column Vector Multiplication
+    else if (m_RowNumber == Other.GetColumns() && Other.GetRows() == 1) {
+        Matrix Matrix result = Matrix(Other.GetRows(), m_ColumnNumber);
+        // TODO
+
+    }
+    else {
         throw std::invalid_argument("The number of columns of A must be the same as the number of rows of B");
     }
 }
