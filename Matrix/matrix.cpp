@@ -145,13 +145,6 @@ Matrix Matrix::operator*(Matrix &Other) {
         }
         return result;
     }
-
-    // Column Vector Multiplication
-    else if (m_RowNumber == Other.GetColumns() && Other.GetRows() == 1) {
-        Matrix Matrix result = Matrix(Other.GetRows(), m_ColumnNumber);
-        // TODO
-
-    }
     else {
         throw std::invalid_argument("The number of columns of A must be the same as the number of rows of B");
     }
@@ -299,11 +292,74 @@ unsigned Matrix::GetRows() {
 
 IdentityMatrix Matrix::GetIdentityMatrix() {
     if (m_RowNumber != m_ColumnNumber || m_RowNumber <=0) {
-        throw std::invalid_argument("Cannot create identity matrix");
+        throw std::invalid_argument("Cannot create identity matrix => matrix is not square or has no rows/columns");
     }
-    IdentityMatrix I = IdentityMatrix(m_RowNumber);
-    return I;
+    return IdentityMatrix(m_RowNumber);
 }
+
+// Comment what the GetMinor function does
+Matrix Matrix::Minor(unsigned row, unsigned column) {
+    if (m_RowNumber != m_ColumnNumber || row >= m_RowNumber || column >= m_ColumnNumber) {
+        throw std::invalid_argument("Cannot create minor matrix => matrix is not square or row/column is out of bounds");
+    }
+
+    Matrix Minor = Matrix(m_RowNumber - 1, m_ColumnNumber - 1, 0.0);
+    unsigned minor_row = 0;
+    unsigned minor_column = 0;
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            if (i != column && j != row) {
+                Minor[minor_row, minor_column] = m_Matrix[i][j];
+                minor_row++;
+                if (minor_row == m_RowNumber - 1) {
+                    minor_row = 0;
+                    minor_column++;
+                }
+            }
+        }
+    }
+
+    return Minor;
+}
+
+double Matrix::Determinant() {
+    if (m_RowNumber != m_ColumnNumber) {
+        throw std::invalid_argument("Cannot calculate determinant => matrix is not square");
+    }
+
+    if (m_RowNumber == 1) {
+        return m_Matrix[0][0];
+    }
+
+    double determinant = 0;
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        determinant += pow(-1, i) * m_Matrix[i][0] * Minor(0, i).Determinant();
+    }
+
+    return determinant;
+}
+
+Matrix Matrix::Inverse() {
+    if (m_RowNumber != m_ColumnNumber) {
+        throw std::invalid_argument("Cannot calculate inverse => matrix is not square");
+    }
+
+    double determinant = Determinant();
+    if (determinant == 0) {
+        throw std::invalid_argument("No inverse exists as the determinant is 0");
+    }
+
+    Matrix inverse = Matrix(m_RowNumber, m_ColumnNumber, 0.0);
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            inverse[j, i] = pow(-1, i + j) * Minor(i, j).Determinant() / determinant;
+        }
+    }
+
+    return inverse;
+}
+
+
 
 // #############
 // # Utilities #

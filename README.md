@@ -26,15 +26,19 @@ Inverse Matrices
 |  `+=` :heavy_check_mark:  |    `-=` :heavy_check_mark:   |     `*=` :heavy_check_mark:     |  `/=` :heavy_check_mark:  |
 
 ### Matrix Operations
-| Addition | Subtraction | Multiplication | Division |
-|:--------:|:-----------:|:--------------:|:--------:|
-|`+` :construction:|`-` :construction:|`*` <span style="color:#00FF00">:heavy_check_mark:</span>|`/` :x:|
-|  `+=` :x:  |    `-=` :x:   |     `*=` :x:     |  `/=` :x:  |
+| Addition | Subtraction | Multiplication |
+|:--------:|:-----------:|:--------------:|
+|`+` :construction:|`-` :construction:|`*` :heavy_check_mark:|
+|  `+=` :x:  |    `-=` :x:   |     `*=` :x:     |
 
-### Inverse Operations
+### Matrix  Operations
 | Identity Matrix | Determinant | Cofactor Matrix | Adjucate Matrix |
 |:---------------:|:-----------:|:---------------:|:---------------:|
-|       :heavy_check_mark:       |     :x:     |       :x:       |       :x:       |
+|       :heavy_check_mark:       |     :heavy_check_mark:     |       :x:       |       :x:       |
+
+| Inverse |
+|:---------------:|
+|       :heavy_check_mark:       |
 <!-- https://byjus.com/maths/adjoint-of-a-matrix/ -->
 
 ### Additional Utilities

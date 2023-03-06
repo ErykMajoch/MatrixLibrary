@@ -29,13 +29,11 @@ class Matrix {
     // Matrix Operations
     Matrix operator+(Matrix &);  // <= Implement all features
     Matrix operator-(Matrix &);  // <= Implement all features
-    Matrix operator*(Matrix &);
-    // TODO => Matrix operator/(Matrix &);
+    Matrix operator*(Matrix);
 
     // TODO => Matrix& operator+=(Matrix &);
     // TODO => Matrix& operator-=(Matrix &);
     // TODO => Matrix& operator*=(Matrix &);
-    // TODO => Matrix& operator/=(Matrix &);
 
     // Scalar Operations
     Matrix operator+(double);
@@ -55,6 +53,9 @@ class Matrix {
 
     // Functions
     Matrix Transpose() const;
+    Matrix Minor(unsigned, unsigned);
+    double Determinant();
+    Matrix Inverse();
 
     // Print Matrix
     void Print();
