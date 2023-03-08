@@ -22,29 +22,29 @@ Inverse Matrices
 ### Scalar Operations
 | Addition | Subtraction | Multiplication | Division |
 |:--------:|:-----------:|:--------------:|:--------:|
-|   `+` :heavy_check_mark:  |    `-` :heavy_check_mark:    |      `*` :heavy_check_mark:     |   `/` :heavy_check_mark:  |
-|  `+=` :heavy_check_mark:  |    `-=` :heavy_check_mark:   |     `*=` :heavy_check_mark:     |  `/=` :heavy_check_mark:  |
+|   `+` ✅  |    `-` ✅    |      `*` ✅     |   `/` ✅  |
+|  `+=` ✅  |    `-=` ✅   |     `*=` ✅     |  `/=` ✅  |
 
 ### Matrix Operations
 | Addition | Subtraction | Multiplication |
 |:--------:|:-----------:|:--------------:|
-|`+` :construction:|`-` :construction:|`*` :heavy_check_mark:|
+|`+` :construction:|`-` :construction:|`*` ✅|
 |  `+=` :x:  |    `-=` :x:   |     `*=` :x:     |
 
 ### Matrix  Operations
 | Identity Matrix | Determinant | Cofactor Matrix | Adjucate Matrix |
 |:---------------:|:-----------:|:---------------:|:---------------:|
-|       :heavy_check_mark:       |     :heavy_check_mark:     |       :x:       |       :x:       |
+|       ✅       |     ✅     |       :x:       |       :x:       |
 
 | Inverse |Transpose|
 |:---------------:|:---------------:|
-|       :heavy_check_mark:       |       :heavy_check_mark:       |
+|       ✅       |       ✅       |
 <!-- https://byjus.com/maths/adjoint-of-a-matrix/ -->
 
 ### Additional Utilities
 |        Print       |
 |:------------------:|
-| :heavy_check_mark: |
+| ✅ |
 
 
 ## Building the project
