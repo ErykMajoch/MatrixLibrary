@@ -29,7 +29,7 @@ class Matrix {
     // Matrix Operations
     Matrix operator+(Matrix &);  // <= Implement all features
     Matrix operator-(Matrix &);  // <= Implement all features
-    Matrix operator*(Matrix);
+    Matrix operator*(Matrix &);
 
     // TODO => Matrix& operator+=(Matrix &);
     // TODO => Matrix& operator-=(Matrix &);
@@ -52,7 +52,7 @@ class Matrix {
     IdentityMatrix GetIdentityMatrix();
 
     // Functions
-    Matrix Transpose() const;
+    Matrix& Transpose();
     Matrix Minor(unsigned, unsigned);
     double Determinant();
     Matrix Inverse();

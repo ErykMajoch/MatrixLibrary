@@ -297,7 +297,19 @@ IdentityMatrix Matrix::GetIdentityMatrix() {
     return IdentityMatrix(m_RowNumber);
 }
 
-// Comment what the GetMinor function does
+Matrix& Matrix::Transpose() {
+    Matrix result = Matrix(m_ColumnNumber, m_RowNumber, 0.0);
+    for (unsigned i = 0; i < m_ColumnNumber; i++) {
+        for (unsigned j = 0; j < m_RowNumber; j++) {
+            result[i, j] = m_Matrix[i][j];
+        }
+    }
+    m_Matrix = result.m_Matrix;
+    m_RowNumber = result.m_RowNumber;
+    m_ColumnNumber = result.m_ColumnNumber;
+    return *this;
+}
+
 Matrix Matrix::Minor(unsigned row, unsigned column) {
     if (m_RowNumber != m_ColumnNumber || row >= m_RowNumber || column >= m_ColumnNumber) {
         throw std::invalid_argument("Cannot create minor matrix => matrix is not square or row/column is out of bounds");

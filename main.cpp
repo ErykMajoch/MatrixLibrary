@@ -11,19 +11,17 @@ int main() {
     std::cout << "\nMatrix B\n";
     B.Print();
 
-    // Matrix R = A * B;
-    // std::cout << "\nAB:\n";
-    // R.Print();
-
     Matrix X = std::vector<std::vector<double>>{{4,7}, {2,6}};
     std::cout << "\nInverse of X:\n";
     X.Inverse().Print();
+    std::cout << "\n";
+    Matrix Y = std::vector<std::vector<double>>{{1,2},{3,4},{5,6}};
+    Y.Print();
+    std::cout << "\n";
+    Y.Transpose();
+    Y.Print();
 
-    Matrix Y = std::vector<std::vector<double>>{{13,26}, {39,13}};
-    Matrix Z = std::vector<std::vector<double>>{{7,4}, {2,3}};
 
-    Matrix Prod = Y / Z;
-    Prod.Print();
 
 
     return 0;
